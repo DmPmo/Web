@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Блог</title>
+    <!--  Подключение стилей  -->
+    <link rel="stylesheet" href="./style.css" />
+    <!--  Подключение js  -->
+    <script src="../src/main.js" defer></script>
+</head>
+<body>
+<header class="navbar-container">
+    <h1>Мой блог</h1>
+    <button id="themeToggle">Сменить тему</button>
+</header>
+<main id="posts">
+    <!-- Посты генерируются при помощи JS (строки 23-45 в src/main.js) -->
+</main>
+
+<!-- модалка -->
+<!-- Прошу обратить внимание на то, что модалка существует в единственном экземпляре -->
+<!-- В свою очередь клик (src/main.js, строка 35) устанавливает в теги ниже контент открытого поста -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2 id="modal-title"></h2>
+        <p id="modal-text"></p>
+        <button id="closeModal">Закрыть</button>
+    </div>
+</div>
+</body>
+</html>

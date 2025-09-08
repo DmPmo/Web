@@ -1,0 +1,152 @@
+/**
+ * Объявление css-переменных. В :root будут храниться базовые стили
+ * https://www.w3schools.com/css/css3_variables_overriding.asp
+ */
+ :root {
+    --bg: #fff;
+    --text: #222;
+    --accent: #0077cc;
+}
+
+/**
+ * Переписываем css-переменные для темной темы.
+ * Для переключения темы, на тег body добавляется класс .dark
+ * https://www.w3schools.com/css/css3_variables_overriding.asp
+ */
+body.dark {
+    --bg: #1e1e1e;
+    --text: #eee;
+    --accent: #66aaff;
+}
+
+body {
+    font-family: sans-serif;
+    /**
+     * Использование css-переменных
+     * https://www.w3schools.com/css/css3_variables.asp
+     */
+    background: var(--bg);
+    /* Цвет текста */
+    color: var(--text);
+    /* Внешние отступы */
+    margin: 0;
+    /* Внутренние отступы */
+    padding: 0;
+    /* Указываем, что изменение background должно быть плавным */
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar-container {
+    /* цвет фона навигационной панели */
+    background: var(--accent);
+    /* цвет текста навигационной панели */
+    color: white;
+    /*
+     * внутренний отступ навигационной панели
+     * Обратите внимание на единицы измерения rem
+     * https://learn.javascript.ru/css-units
+     */
+    padding: 1rem;
+    /**
+     * flexbox - очень мощный способ разметки, использующийся чаще остальных
+     * Рекомендую изучить и попрактиковаться
+     * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+     */
+    display: flex;
+    /**
+     * Выравнивание контента по направлению flexbox (по оси x).
+     * По ссылке выше описаны другие варианты
+     */
+    justify-content: space-between;
+    /**
+     * Выравнивание контента по направлению, обратному flexbox (по оси y).
+     * По ссылке выше описаны другие варианты
+     */
+    align-items: center;
+}
+
+main {
+    /* максимальная ширина секции main */
+    max-width: 800px;
+    /*
+     * Контейнер будет выровнен по середине
+     * https://www.joshwcomeau.com/css/center-a-div/
+     */
+    margin: 1rem auto;
+    /* Внутренние отступы по горизонтали */
+    padding: 0 1rem;
+}
+
+.post {
+    /* Рамки */
+    border: 1px solid #ccc;
+    padding: 1rem;
+    /**
+     * Рамки должны быть скругленными
+     * К слову, есть много подобных сервисов: https://html-css-js.com/css/generator/border-outline/
+    */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: var(--bg);
+    /* Меням курсор при наведении */
+    cursor: pointer;
+    /**
+     * Плавное добавление тени при наведении
+     * Важно: сам компонент не понимает, как себя вести, когда на него наводят мышь
+     * Важно: для этого есть псевдоклассы - пример ниже...
+    */
+    transition: box-shadow 0.3s;
+}
+
+/**
+ * Использование псевдокласса для добавления поведения при наведении мыши
+ * https://www.w3schools.com/css/css_pseudo_classes.asp
+ * Рекомендую пробежаться по доке, т.к. псевдоклассы
+ * используются не только для описания состояний. Пример: p:first-child
+ */
+.post:hover {
+    /* Все стили, добавленные здесь будут применены при наведении мыши на .post */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* модалка */
+.modal {
+    /**
+     * Абсолютное позиционирование - компонент выбивается из основного flow
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/position
+     * В доке обратите внимание на position:relative и его комбинацию с position:absolute
+     */
+    position: fixed;
+    /* Говорим, что модалка должна быть расположена сверху слева */
+    top: 0;
+    left: 0;
+    /* Указываем размер в 100% */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /*
+     * Модалки не существует!
+     * Важный момент: display:none меняется на display:flex в src/main.js на строке 41
+     * Таким образом она открывается.
+     * При закрытии display устанавливается обратно в none (src/main.js, строка 53)
+     */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+}
